@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Risheek2627/AI_TODO#readme",
   "dependencies": {
+    "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
