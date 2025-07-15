@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
 
     const user = await User.findById(userId);
     if (!user) {
-      return res.status(401).jso({ message: "Token is invalid or incorrect" });
+      return res.status(401).json({ message: "Token is invalid or incorrect" });
     }
 
     req.user = user;
