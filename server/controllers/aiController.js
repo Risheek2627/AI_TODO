@@ -134,7 +134,7 @@ const handleAiChat = async (req, res) => {
       }
 
       await Task.create({
-        user: userId, // Ensure title exists
+        user: userId,
         task: reply.title || "Untitled Task", // Add this if your model requires it
         dueDate: parsedDueDate,
         completed: false,
