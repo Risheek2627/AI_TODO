@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My AI Task Dashboard</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Title & Assistant -->
+      <h1 class="main-title">👨‍💻 Welcome to Your AI Dashboard</h1>
+      <img
+        src="assets/bot.gif"
+        alt="AI Bot"
+        width="100"
+        style="margin-bottom: 1rem"
+      />
+
+      <!-- Add Task Form -->
+      <div class="section">
+        <h2>➕ Add a New Task</h2>
+        <form id="taskForm">
+          <input type="text" id="taskTitle" placeholder="Task title" required />
+          <input type="datetime-local" id="taskDueDate" required />
+          <button type="submit" class="primary-button">Add Task</button>
+        </form>
+      </div>
+
+      <!-- Task List -->
+      <div class="section">
+        <h2>📋 My Tasks</h2>
+        <ul id="taskList"></ul>
+      </div>
+
+      <!-- AI Chat Assistant -->
+      <div class="section">
+        <h2>💬 AI Assistant Chat</h2>
+
+        <div id="chatBox" class="chat-box"></div>
+
+        <div class="chat-controls">
+          <input
+            type="text"
+            id="chatInput"
+            placeholder="Type or speak your question..."
+          />
+          <button id="voiceBtn">🎙️</button>
+          <button id="sendBtn" class="primary-button">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/tasks.js"></script>
+    <script src="script/chatbox.js"></script>
+  </body>
+</html>

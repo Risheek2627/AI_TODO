@@ -1,0 +1,132 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* === CONTAINER === */
+.container {
+  text-align: center;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* === BUTTONS === */
+.primary-button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.primary-button:hover {
+  background-color: #4338ca;
+}
+
+/* === MODAL === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.toggle-link {
+  color: #4f46e5;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.chat-box {
+  background: #fff;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  margin: 8px 0;
+  max-width: 75%;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.chat-bubble.user {
+  background: #e0f7fa;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-bubble.ai {
+  background: #f1f1f1;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.chat-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-controls input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* === HIDE ELEMENT === */
+.hidden {
+  display: none;
+}

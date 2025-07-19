@@ -6,7 +6,9 @@ const taskRoutes = require("./routes/taskRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 connectDB();
 

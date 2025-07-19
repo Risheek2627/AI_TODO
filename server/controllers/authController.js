@@ -45,7 +45,11 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
+    // In authController.js login function
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
     const token = jwt.sign({ id: user._id }, process.env.jwt_secret, {
       expiresIn: "1h",
     });

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart AI Task Assistant</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- App Title -->
+      <h1 class="main-title">🤖 Smart AI Task Assistant</h1>
+
+      <!-- Add Task Button -->
+      <button id="openAuthModal" class="primary-button">➕ Add Task</button>
+
+      <!-- Auth Modal -->
+      <div id="authModal" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modalTitle">Login</h2>
+
+          <form id="authForm">
+            <input type="email" id="email" placeholder="Email" required />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <button type="submit" class="primary-button">Continue</button>
+          </form>
+
+          <p id="toggleAuth" class="toggle-link">
+            Don’t have an account? Register
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/auth.js"></script>
+  </body>
+</html>
