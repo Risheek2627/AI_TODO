@@ -98,10 +98,12 @@ USER INPUT:
 
 1. ✅ NEW TASK (Add)
 If the user wants to add a task — or says anything like "I have to", "I want to", "remind me", "plan to", "I'll do", "going to do", etc., return:
+and so when you add the task give category also like if user task is based on study , read , write like that put in "Study" , if his taks are like "call"  "meetings" put it into "casual" thing ,  if his tasks are like  "gym" , "play" , "yoga" , "drink" like this put it into "health and fitness" category
 {
   "action": "add",
   "title": "Task title here",
-  "dueDate": "Optional ISO format like 2025-07-15T15:00:00"
+  "dueDate": "Optional ISO format like 2025-07-15T15:00:00",
+  category : "Give category name based on which task it is"
 }
 
 2. ✅ SUGGESTION (What should I do now?)
@@ -191,7 +193,7 @@ USER: "Add: Submit internship form by tomorrow 5pm"
     });
 
     const replyText = res.data.candidates[0]?.content?.parts[0]?.text;
-
+    console.log(replyText);
     try {
       return JSON.parse(replyText);
     } catch (e) {
