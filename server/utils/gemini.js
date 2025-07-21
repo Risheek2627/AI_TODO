@@ -98,7 +98,9 @@ USER INPUT:
 
 1. ✅ NEW TASK (Add)
 If the user wants to add a task — or says anything like "I have to", "I want to", "remind me", "plan to", "I'll do", "going to do", etc., return:
-and so when you add the task give category also like if user task is based on study , read , write like that put in "Study" , if his taks are like "call"  "meetings" put it into "casual" thing ,  if his tasks are like  "gym" , "play" , "yoga" , "drink" like this put it into "health and fitness" category
+and so when you add the task give category also like if user task is based on study , read , write like that put in "Study" , if his taks are like "call"  "meetings" put it into "casual" thing ,  if his tasks are like  "gym" , "play" , "yoga" , "drink" like this put it into "health and fitness" category ,If the task contains words like "meeting", "report", "project" → category = "Work"
+If it contains "buy", "recharge", "groceries" → category = "Errands"
+
 {
   "action": "add",
   "title": "Task title here",
@@ -152,33 +154,33 @@ If you can’t understand clearly, return:
 
 🧪 EXAMPLES:
 
-USER: "Call mom she is sick"  
+USER: "Call mom she is sick"
 → {
   "action": "add",
   "title": "Call mom she is sick",
   "dueDate": null
 }
 
-USER: "What should I do now?"  
+USER: "What should I do now?"
 → {
   "action": "suggest",
   "suggestion": "Call your mom",
   "reason": "She is sick — health should come first"
 }
 
-USER: "Tell me a joke"  
+USER: "Tell me a joke"
  {
   "action": "reply",
   "message": "Why don’t skeletons fight? They don’t have the guts! 😄"
 }
 
-USER: "I'm tired, I feel like giving up..."  
+USER: "I'm tired, I feel like giving up..."
  {
   "action": "motivate",
   "message": "You're doing great! Just one step at a time — progress is happening."
 }
 
-USER: "Add: Submit internship form by tomorrow 5pm"  
+USER: "Add: Submit internship form by tomorrow 5pm"
 → {
   "action": "add",
   "title": "Submit internship form",
@@ -207,3 +209,26 @@ USER: "Add: Submit internship form by tomorrow 5pm"
     throw error;
   }
 };
+
+// let start, end;
+// const startDate = "2025-07-14";
+// const endDate = "2025-07-20";
+// start = new Date(startDate);
+// end = new Date(endDate);
+// console.log(start);
+// end.setHours(23, 59, 59, 999);
+
+// let today = "2025-07-26";
+// today = new Date(today);
+// const day = today.getDay();
+// console.log(day); // 6
+// const diffToMonday = day === 0 ? -6 : 1 - day;
+// console.log(diffToMonday); // -5
+// start = new Date(today); // 2025-07-26
+// const result = start.setDate(today.getDate() + diffToMonday); // (26 + (-5) )---. 21 which is monday
+// start.setHours(0, 0, 0, 0);
+// // console.log(new Date(result));
+
+// end = new Date(start);
+// end.setDate(start.getDate() + 6);
+// end.setHours(23, 59, 59, 999);
