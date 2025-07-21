@@ -59,7 +59,7 @@ getWeeklyProgress = async (req, res) => {
         custom: !!startDate && !!endDate,
       },
       totalTasks: total,
-      completedTask: completed,
+      completedTasks: completed,
       pendingTasks: total - completed,
       completionRate: `${percent}%`,
     });
@@ -105,10 +105,10 @@ const dailyProgress = async (req, res) => {
 
     return res.json({
       todayTime: start.toDateString(),
-      Total_tasks: total,
+      totalTasks: total,
       completedTasks: completed,
       pendingTasks: total - completed,
-      CompletetionRate: percent,
+      completetionRate: percent,
     });
   } catch (error) {
     console.log(error);
