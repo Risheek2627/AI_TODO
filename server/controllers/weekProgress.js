@@ -12,7 +12,6 @@ getWeeklyProgress = async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
     const userId = req.user.id;
-    console.log("USER ID : ", userId);
     let start, end;
 
     if (startDate && endDate) {
@@ -40,15 +39,13 @@ getWeeklyProgress = async (req, res) => {
       end = new Date(start);
       end.setDate(start.getDate() + 6);
       end.setHours(23, 59, 59, 999);
-      console.log(start, end);
     }
 
     const tasks = await Task.find({
       user: userId,
-      // createdAt: { $gte: start, $lte: end },
+      createdAt: { $gte: start, $lte: end },
     });
-
-    console.log(tasks);
+    // console.log(start, end);
     const total = tasks.length;
 
     const completed = tasks.filter((task) => task.completed === true).length;
@@ -72,4 +69,51 @@ getWeeklyProgress = async (req, res) => {
   }
 };
 
-module.exports = { getWeeklyProgress };
+const dailyProgress = async (req, res) => {
+  try {
+    const { date } = req.query;
+    if (date && isNaN(Date.parse(date))) {
+      return res.status(400).json({ error: "Invalid date format." });
+    }
+    let start, end;
+    if (date) {
+      start = new Date(date);
+      start.setHours(0, 0, 0, 0);
+
+      end = new Date(start);
+      end.setHours(23, 59, 59, 999);
+    } else {
+      start = new Date();
+      start.setHours(0, 0, 0, 0);
+
+      end = new Date(start);
+      end.setHours(23, 59, 59, 999);
+    }
+    console.log(req.user.id);
+
+    const tasks = await Task.find({
+      user: req.user.id,
+      createdAt: { $gte: start, $lte: end },
+    });
+
+    console.log(tasks);
+    const total = tasks.length;
+
+    const completed = tasks.filter((task) => task.completed === true).length;
+
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    return res.json({
+      todayTime: start.toDateString(),
+      Total_tasks: total,
+      completedTasks: completed,
+      pendingTasks: total - completed,
+      CompletetionRate: percent,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getWeeklyProgress, dailyProgress };
