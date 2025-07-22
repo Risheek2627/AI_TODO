@@ -1,4 +1,43 @@
 const Task = require("../model/Task");
+// const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
+// const fs = require("fs");
+// const path = require("path");
+
+// Create charts folder if not exists
+// const chartDir = path.join(__dirname, "..", "charts");
+// if (!fs.existsSync(chartDir)) {
+//   fs.mkdirSync(chartDir, { recursive: true });
+// }
+
+// const width = 600;
+// const height = 400;
+// const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height });
+
+// async function generateBarChart({ totalTasks, completedTasks, pendingTasks }) {
+//   const config = {
+//     type: "bar",
+//     data: {
+//       labels: ["Completed", "Pending"],
+//       datasets: [
+//         {
+//           label: "Tasks",
+//           data: [completedTasks, pendingTasks],
+//           backgroundColor: ["#4CAF50", "#F44336"],
+//         },
+//       ],
+//     },
+//   };
+
+//   const imageBuffer = await chartJSNodeCanvas.renderToBuffer(config);
+
+//   const imagePath = path.join(
+//     __dirname,
+//     "..",
+//     "charts",
+//     "daily-progress-bar.png"
+//   );
+//   fs.writeFileSync(imagePath, imageBuffer);
+// }
 
 const isValidWeek = (start, end) => {
   const diff = new Date(end) - new Date(start);
@@ -49,7 +88,7 @@ getWeeklyProgress = async (req, res) => {
     const total = tasks.length;
 
     const completed = tasks.filter((task) => task.completed === true).length;
-
+    const pending = total - completed;
     const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
     return res.json({
@@ -96,18 +135,28 @@ const dailyProgress = async (req, res) => {
       createdAt: { $gte: start, $lte: end },
     });
 
-    console.log(tasks);
+    // console.log(tasks);
     const total = tasks.length;
 
     const completed = tasks.filter((task) => task.completed === true).length;
-
+    const pending = total - completed;
     const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    // todo   Chart generate for data
+    // try {
+    //   await generateBarChart({
+    //     completedTasks: completed,
+    //     pendingTasks: pending,
+    //   });
+    // } catch (err) {
+    //   console.error("Chart generation failed:", err);
+    // }
 
     return res.json({
       todayTime: start.toDateString(),
       totalTasks: total,
       completedTasks: completed,
-      pendingTasks: total - completed,
+      pendingTasks: pending,
       completetionRate: percent,
     });
   } catch (error) {
