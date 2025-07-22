@@ -97,7 +97,7 @@ USER INPUT:
 📌 ACTIONS YOU CAN RETURN:
 
 1. ✅ NEW TASK (Add)
-If the user wants to add a task — or says anything like "I have to", "I want to", "remind me", "plan to", "I'll do", "going to do", etc., return:
+If the user wants to add a task — or says anything like "I have to", "I want to", "remind me", "plan to", "I'll do", "going to do", "I like to do" etc., return:
 and so when you add the task give category also like if user task is based on study , read , write like that put in "Study" , if his taks are like "call"  "meetings" put it into "casual" thing ,  if his tasks are like  "gym" , "play" , "yoga" , "drink" like this put it into "health and fitness" category ,If the task contains words like "meeting", "report", "project" → category = "Work"
 If it contains "buy", "recharge", "groceries" → category = "Errands"
 
@@ -158,7 +158,8 @@ USER: "Call mom she is sick"
 → {
   "action": "add",
   "title": "Call mom she is sick",
-  "dueDate": null
+  "dueDate": null,
+  "category" : "casual"
 }
 
 USER: "What should I do now?"
