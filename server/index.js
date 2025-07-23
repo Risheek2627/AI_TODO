@@ -16,23 +16,39 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/user", userRoutes);
-
 app.use("/task", taskRoutes);
-
 app.use("/ai", aiRoutes);
-
 app.use("/api", progressRoutes);
 
-const scheduleDailyReminder = () => {
-  reminderQueue.add(
-    {},
-    {
-      repeat: { cron: "*/1 * * * *" },
-      jobId: "daily-task-reminder",
+const scheduleDailyReminder = async () => {
+  try {
+    const jobs = await reminderQueue.getRepeatableJobs();
+    const alreadyScheduled = jobs.find(
+      (job) => job.id === "daily-task-reminder"
+    );
+
+    if (!alreadyScheduled) {
+      await reminderQueue.add(
+        {},
+        {
+          repeat: { cron: "20 10 * * *" },
+          tz: "Asia/Kolkata", // 8:38 AM IST
+          jobId: "daily-task-reminder",
+        }
+      );
+    } else {
+      console.log(" Job already scheduled:", alreadyScheduled);
     }
-  );
+
+    const updatedJobs = await reminderQueue.getRepeatableJobs();
+    console.log("Current repeatable jobs:", updatedJobs);
+  } catch (err) {
+    console.error("Error scheduling job:", err);
+  }
 };
-// scheduleDailyReminder();
+
+scheduleDailyReminder();
+
 app.listen(3000, () => {
-  console.log("Running");
+  console.log("✅ Server Running on port 3000");
 });
