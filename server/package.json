@@ -28,13 +28,16 @@
   "dependencies": {
     "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
+    "bull": "^4.16.5",
     "chartjs-node-canvas": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "ioredis": "^5.6.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.3",
+    "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "path": "^0.12.7"
   }

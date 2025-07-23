@@ -1,6 +1,8 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const app = express();
+
+const reminderQueue = require("./jobs/taskReminder");
 const userRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const aiRoutes = require("./routes/aiRoutes");
@@ -20,6 +22,17 @@ app.use("/task", taskRoutes);
 app.use("/ai", aiRoutes);
 
 app.use("/api", progressRoutes);
+
+const scheduleDailyReminder = () => {
+  reminderQueue.add(
+    {},
+    {
+      repeat: { cron: "30 2 * * *" },
+      jobId: "daily-task-reminder",
+    }
+  );
+};
+scheduleDailyReminder();
 app.listen(3000, () => {
   console.log("Running");
 });
