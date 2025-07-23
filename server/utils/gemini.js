@@ -19,68 +19,8 @@ exports.sendToGemini = async (message, userId) => {
       )
       .join("\n");
     console.log("🧾 USER TASK LIST:\n", taskList);
+    const today = new Date().toISOString().split("T")[0]; // e.g., "2025-07-23"
 
-    // In utils/gemini.js
-    //     const prompt = `
-    // 🧠 You are a smart AI productivity assistant with **emotional intelligence and empathy**.
-
-    // USER'S CURRENT TASKS:
-    // ${taskList || "No tasks available"}
-
-    // USER SAID: "${message}"
-
-    // 📜 Rules you MUST follow:
-    // 1. ✅ Prioritize tasks related to health, family, or emotional well-being — even if they are scheduled later.
-    //    Example: "Call mom she is sick" > "Math homework due at 8:30am"
-    // 2. ✅ Ignore already completed tasks.
-    // 3. ✅ Among remaining tasks, use deadline/time as a secondary priority.
-    // 4. ❌ NEVER pick based only on earliest due time.
-    // 5. ✅ Always respond in this strict JSON format:
-    // {
-    //   "action": "suggest",
-    //   "suggestion": "Call your mom now",
-    //   "reason": "She's sick — health is top priority."
-    // }
-    // - If they're trying to add a task (e.g. "add", "I want to", "I have to", "I should"), respond like:
-    // {
-    //   "action": "add",
-    //   "title": "Task title",
-    //   "dueDate": "Optional ISO string (like 2025-07-15T15:00:00)"
-    // }
-
-    // - If they're asking "what to do", "what should I do", or just seem confused, respond like:
-    // {
-    //   "action": "suggest",
-    //   "suggestion": "Do X",
-    //   "reason": "Y"
-    // }
-
-    // - If they’re asking for encouragement, reply:
-    // {
-    //   "action": "motivate",
-    //   "message": "You're doing great!"
-    // }
-
-    // - If unclear, reply:
-    // {
-    //   "action": "reply",
-    //   "message": "I didn't understand. Could you rephrase?"
-    // }
-
-    // Remember: if the sentence contains “add”, “want to do”, “plan to do”, etc., it is most likely an “add” action.
-    // 🎯 Examples:
-    // INPUT: "What should I do first?"
-    // TASKS:
-    // - Finish Maths (Due: 8:30am)
-    // - Call mom she is sick (Due: 12:30pm)
-    // RESPONSE:
-    // {
-    //   "action": "suggest",
-    //   "suggestion": "Call your mom first",
-    //   "reason": "She's sick and needs your care. Health > deadlines."
-    // }
-
-    // `;
     const prompt = `
 🧠 You are a smart AI productivity assistant with emotional intelligence. You help users manage their time, tasks, mood, and motivation — like ChatGPT, but focused on productivity.
 
@@ -89,6 +29,8 @@ ${taskList || "No tasks available"}
 
 USER INPUT:
 "${message}"
+
+TODAY'S DATE: ${today}
 
 🎯 Your job is to interpret what the user meant and respond with one of these structured JSON actions:
 

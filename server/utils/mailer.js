@@ -12,12 +12,18 @@ const transpoter = nodemailer.createTransport({
   },
 });
 const sendMail = async (to, subject, html) => {
-  await transpoter.sendMail({
-    from: `AI Assistant  <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    html,
-  });
+  try {
+    const info = await transpoter.sendMail({
+      from: `AI Assistant  <${process.env.EMAIL_USER}>`,
+      to,
+      subject,
+      html,
+    });
+    console.log("Email sent : ");
+    // return info;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = sendMail;

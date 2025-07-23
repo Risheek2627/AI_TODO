@@ -17,6 +17,7 @@ reminderQueue.process(async (job) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  console.log("I entered the reminder process");
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1).toLocaleString();
   // console.log(tomorrow);
@@ -24,6 +25,7 @@ reminderQueue.process(async (job) => {
   const overDueDate = new Date(today);
 
   const users = await User.find(); // to get all users
+  console.log("Users", users);
 
   for (let user of users) {
     const todayTasks = await Task.find({
@@ -60,9 +62,16 @@ reminderQueue.process(async (job) => {
     }
 
     html += `<p style="margin-top:20px;">Stay productive!<br/>- AI Assistant 🤖</p>`;
+
     console.log(" Reminder Job Executed at", new Date().toLocaleString());
+
     if (todayTasks.length || dueTasks.length) {
       await sendMail(user.email, " Daily Task Reminder", html);
+      console.log(`📬 Email sent to: ${user.name} <${user.email}>`);
+    } else {
+      console.log(
+        `❌ No tasks for: ${user.name} <${user.email}> — Skipping email.`
+      );
     }
   }
 });

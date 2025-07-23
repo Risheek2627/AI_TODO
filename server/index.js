@@ -31,7 +31,7 @@ const scheduleDailyReminder = async () => {
       await reminderQueue.add(
         {},
         {
-          repeat: { cron: "20 10 * * *" },
+          repeat: { cron: "09 22 * * *" },
           tz: "Asia/Kolkata", // 8:38 AM IST
           jobId: "daily-task-reminder",
         }
