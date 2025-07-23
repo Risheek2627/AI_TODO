@@ -86,4 +86,5 @@ reminderQueue.process(async (job) => {
 });
 reminderQueue.getRepeatableJobs().then(console.log);
 
+reminderQueue.getRepeatableJobs().then(console.log);
 module.exports = reminderQueue;

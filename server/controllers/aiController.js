@@ -127,8 +127,14 @@ const handleAiChat = async (req, res) => {
       let parsedDueDate = null;
       if (reply.dueDate) {
         parsedDueDate = new Date(reply.dueDate);
+        const now = new Date();
+
+        if (parsedDueDate < now) {
+          parsedDueDate.setFullYear(now.getFullYear());
+          console.log("adjusted the time", parsedDueDate);
+        }
         if (isNaN(parsedDueDate.getTime())) {
-          console.warn("Invalid date received:", reply.dueDate);
+          console.log("Invalid date received:", reply.dueDate);
           parsedDueDate = null;
         }
       }

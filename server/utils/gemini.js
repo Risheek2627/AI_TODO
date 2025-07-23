@@ -149,6 +149,9 @@ If you can’t understand clearly, return:
 - Do not ask follow-up questions — respond with a best guess.
 - Use only the defined action types above — don't invent new ones.
 - Return clean JSON only — no markdown, no explanations.
+- When you add the job then see the current year correctly.
+- Do NOT generate past dates. Always assume current year is 2025 or later when interpreting user input like "tomorrow", "next week", etc.
+
 
 ---
 
@@ -210,26 +213,3 @@ USER: "Add: Submit internship form by tomorrow 5pm"
     throw error;
   }
 };
-
-// let start, end;
-// const startDate = "2025-07-14";
-// const endDate = "2025-07-20";
-// start = new Date(startDate);
-// end = new Date(endDate);
-// console.log(start);
-// end.setHours(23, 59, 59, 999);
-
-// let today = "2025-07-26";
-// today = new Date(today);
-// const day = today.getDay();
-// console.log(day); // 6
-// const diffToMonday = day === 0 ? -6 : 1 - day;
-// console.log(diffToMonday); // -5
-// start = new Date(today); // 2025-07-26
-// const result = start.setDate(today.getDate() + diffToMonday); // (26 + (-5) )---. 21 which is monday
-// start.setHours(0, 0, 0, 0);
-// // console.log(new Date(result));
-
-// end = new Date(start);
-// end.setDate(start.getDate() + 6);
-// end.setHours(23, 59, 59, 999);

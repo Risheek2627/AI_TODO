@@ -27,12 +27,12 @@ const scheduleDailyReminder = () => {
   reminderQueue.add(
     {},
     {
-      repeat: { cron: "30 2 * * *" },
+      repeat: { cron: "*/1 * * * *" },
       jobId: "daily-task-reminder",
     }
   );
 };
-scheduleDailyReminder();
+// scheduleDailyReminder();
 app.listen(3000, () => {
   console.log("Running");
 });
