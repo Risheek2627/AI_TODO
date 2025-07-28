@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Welcome to FlowBuddy</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #f8f9fa;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      .email-container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      /* Mobile Responsiveness */
+      @media only screen and (max-width: 600px) {
+        body {
+          padding: 8px;
+          margin: 0;
+        }
+        .email-container {
+          padding: 12px;
+          border-radius: 8px;
+          margin: 0;
+          width: calc(100% - 16px);
+          max-width: none;
+        }
+        .header {
+          margin-bottom: 15px;
+        }
+        .logo {
+          font-size: 1.8em !important;
+          margin-bottom: 8px !important;
+        }
+        h2 {
+          font-size: 1.3em !important;
+          margin-bottom: 12px !important;
+          word-wrap: break-word;
+        }
+        .highlight {
+          padding: 15px 12px !important;
+          margin: 12px 0 !important;
+          border-radius: 10px !important;
+          width: calc(100% - 24px);
+          max-width: none;
+        }
+        .highlight p {
+          font-size: 0.9em;
+          margin-bottom: 10px !important;
+          line-height: 1.4;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+        .cta-button {
+          padding: 12px 15px !important;
+          font-size: 0.9em !important;
+          width: calc(100% - 30px);
+          max-width: none;
+          text-align: center;
+          box-sizing: border-box;
+          margin: 15px auto !important;
+          display: block;
+          word-wrap: break-word;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .footer {
+          margin-top: 20px !important;
+          padding: 0 5px;
+        }
+        .footer p {
+          font-size: 0.85em;
+          margin-bottom: 8px;
+          line-height: 1.3;
+          word-wrap: break-word;
+        }
+      }
+
+      /* Extra small screens */
+      @media only screen and (max-width: 400px) {
+        body {
+          padding: 5px;
+        }
+        .email-container {
+          padding: 10px;
+          width: calc(100% - 10px);
+        }
+        .logo {
+          font-size: 1.6em !important;
+        }
+        h2 {
+          font-size: 1.2em !important;
+        }
+        .highlight {
+          padding: 12px 10px !important;
+          width: calc(100% - 20px);
+        }
+        .highlight p {
+          font-size: 0.85em;
+        }
+        .cta-button {
+          padding: 10px 12px !important;
+          font-size: 0.85em !important;
+          width: calc(100% - 24px);
+        }
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      .logo {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+      h2 {
+        color: #2563eb;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .highlight {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin: 25px 0;
+        border-left: 5px solid #fbbf24;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 100%;
+      }
+      .highlight::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+      }
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        50% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+      }
+      .highlight p {
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .highlight strong {
+        color: #fbbf24;
+        font-weight: 700;
+      }
+      .cta-button {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+        margin: 20px 0;
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+      }
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+        border: 2px solid #fbbf24;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #6b7280;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <div class="logo">🚀💫</div>
+        <h2>Hello ${user.name || "there"}! 👋</h2>
+      </div>
+
+      <div class="highlight">
+        <p>
+          <strong>🎉 Welcome to FlowBuddy!</strong> Your personal AI assistant
+          is ready to help you tackle your todo list
+          <strong>smarter than ever</strong>.
+        </p>
+
+        <p>
+          🚀 <strong>Get started now:</strong> Add a few tasks and watch the AI
+          suggestions come to life!
+        </p>
+
+        <p>
+          ✨ Your AI buddy will help you prioritize, organize, and stay on top
+          of everything effortlessly.
+        </p>
+      </div>
+
+      <div style="text-align: center">
+        <a href="#" class="cta-button">🎯 Start Organizing Now</a>
+      </div>
+
+      <div class="footer">
+        <p>
+          💡 <strong>Pro tip:</strong> The more you use FlowBuddy, the smarter
+          your AI assistant becomes!
+        </p>
+        <p>Need help? Just reply to this email - we're here for you! 💬</p>
+      </div>
+    </div>
+  </body>
+</html>
