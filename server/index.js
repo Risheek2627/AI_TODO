@@ -7,6 +7,8 @@ const userRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const progressRoutes = require("./routes/progressRoutes");
+const nlpRoutes = require("./routes/nlpRoutes");
+const transcriptRoutes = require("./routes/transcriptRoutes");
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
@@ -20,8 +22,9 @@ app.use("/api/user", userRoutes);
 app.use("/task", taskRoutes);
 app.use("/ai", aiRoutes);
 app.use("/api", progressRoutes);
-
-scheduleJob();
+app.use("/api", nlpRoutes);
+app.use("/transcript", transcriptRoutes);
+// scheduleJob();
 // const scheduleDailyReminder = async () => {
 //   try {
 //     const jobs = await reminderQueue.getRepeatableJobs();
